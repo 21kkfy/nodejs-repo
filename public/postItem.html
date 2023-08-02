@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST Request Example</title>
+</head>
+
+<body>
+    <h1>Add New Item</h1>
+    <form id="itemForm">
+        <div>
+            <label for="itemName">Name:</label>
+            <input type="text" id="itemName" required>
+        </div>
+        <div>
+            <label for="itemDescription">Description:</label>
+            <input type="text" id="itemDescription" required>
+        </div>
+        <div>
+            <label for="itemPrice">Price:</label>
+            <input type="number" step="0.01" id="itemPrice" required>
+        </div>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <script>
+        const itemForm = document.getElementById('itemForm');
+
+        itemForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const itemData = {
+                name: document.getElementById('itemName').value,
+                description: document.getElementById('itemDescription').value,
+                price: parseFloat(document.getElementById('itemPrice').value),
+            };
+
+            fetch('http://localhost:3000/api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(itemData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('New item added:', data);
+                    alert('New item added successfully!');
+                    itemForm.reset(); // Clear form fields after successful addition
+                })
+                .catch(error => {
+                    console.error('Error adding item:', error);
+                    alert('Error adding item. Please try again.');
+                });
+        });
+    </script>
+</body>
+
+</html>
