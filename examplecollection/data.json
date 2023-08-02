@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Item 1",
+        "description": "This is the first item",
+        "price": 9.99
+    },
+    {
+        "name": "Item 2",
+        "description": "This is the second item",
+        "price": 19.99
+    },
+    {
+        "name": "Item 3",
+        "description": "This is the third item",
+        "price": 29.99
+    },
+    {
+        "name": "Item 4",
+        "description": "This is the fourth item",
+        "price": 39.99
+    }
+]
